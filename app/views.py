@@ -16,7 +16,7 @@ def index(request):
 		title = request.POST['title']
 		questions = Question.objects.all().filter(title__startswith=title)
 	else:
-		questions = Question.objects.all()
+		questions = Question.objects.all().order_by('-pub_date')
 	user = request.user
 	return render(request, 'index.html', {'questions' : questions, 'user' : user})
 
